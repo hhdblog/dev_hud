@@ -1,3 +1,8 @@
+## 0.0.6
+
+- **Fixed Clipboard Notification**: Resolved issue where SnackBar message text was invisible after copying data.
+- **Improved User Feedback**: Copy notifications now display with proper text styling and visibility.
+
 ## 0.0.5
 
 - **UI/UX Overhaul**: Switched to a high-performance "Console" design.

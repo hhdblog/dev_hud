@@ -24,7 +24,7 @@ Add `dev_hud` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dev_hud: ^0.0.5
+  dev_hud: ^0.0.6
 ```
 
 ````

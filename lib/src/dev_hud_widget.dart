@@ -267,7 +267,10 @@ class _DevHudState extends State<DevHud> with SingleTickerProviderStateMixin {
         // Minimal feedback to user
         DevHudService.messengerKey.currentState?.showSnackBar(
           SnackBar(
-            content: Text("Copied '$key' to clipboard"),
+            content: Text(
+              "Copied '$key' to clipboard",
+              style: const TextStyle(color: Colors.white),
+            ),
             duration: const Duration(seconds: 1),
             backgroundColor: const Color(0xFF333333),
             behavior: SnackBarBehavior.floating,
