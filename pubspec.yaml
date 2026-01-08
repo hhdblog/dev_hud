@@ -1,7 +1,10 @@
 name: dev_hud
-description: A lightweight, draggable, game-focused debug overlay for Flutter. Monitor FPS and custom key-value data with zero performance cost when disabled.
-version: 0.0.2
+description: A lightweight, draggable, game-focused debug overlay for Flutter.
+version: 0.0.3
+
 homepage: https://github.com/hhdblog/dev_hud
+
+repository: https://github.com/hhdblog/dev_hud
 
 environment:
   sdk: ^3.10.4

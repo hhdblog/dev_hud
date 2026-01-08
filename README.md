@@ -20,7 +20,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  dev_hud: ^0.0.2
+  dev_hud: ^0.0.3
 ```
 
 ````
