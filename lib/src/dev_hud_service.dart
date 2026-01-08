@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 /// A singleton service that manages the key-value data displayed on the [DevHud] overlay.
 ///
@@ -15,6 +16,9 @@ class DevHudService extends ChangeNotifier {
 
   /// Returns the singleton instance of [DevHudService].
   static DevHudService get instance => _instance;
+
+  /// The key to the Flutter's [ScaffoldMessenger] widget.
+  static final GlobalKey<ScaffoldMessengerState> messengerKey = GlobalKey<ScaffoldMessengerState>();
 
   DevHudService._();
 

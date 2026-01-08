@@ -1,110 +1,92 @@
-# dev_hud
+# dev_hud 🚀
 
-A lightweight, draggable, and game-focused debug overlay for Flutter applications.
-**dev_hud** allows you to monitor FPS and track custom key-value data (like Player Health, Server State, Level, etc.) in real-time.
+# DevHud
 
-Designed for both **Games** and **Apps**, it features a "Zero-Cost" mode where it completely disables itself (stops ticking and rendering) when turned off, making it safe to leave in your production code behind a flag.
+A high-performance, draggable, and game-focused debug overlay for Flutter.  
+Monitor FPS and track custom data in real-time without compromising your app's performance.
 
-## 🚀 Features
+<p align="center">
+  <img src="https://github.com/hhdblog/dev_hud/raw/main/screenshots/demo.png" width="300" alt="DevHud Demo">
+</p>
 
-- **🎮 Game Focused:** Perfect for tracking game states, enemy counts, or physics calculations.
-- **🖱️ Draggable UI:** Drag the overlay anywhere on the screen so it never blocks your UI.
-- **📉 FPS Monitor:** Built-in FPS counter (can be disabled).
-- **⚡ Zero Performance Cost:** When `enabled` is set to `false`, the widget returns a `SizedBox.shrink()` and stops all Tickers. It consumes **0% CPU/GPU**.
-- **📝 Custom Data:** Log any variable (`String`, `int`, `bool`, `double`) with a simple API.
-- **🎨 Auto Formatting:** Automatically colors boolean values (Green/Red) and numbers (Cyan) for better readability.
+## ✨ Features
+
+- **⚡ High Performance:** Optimized with `RepaintBoundary` and throttled updates. Uses semi-transparent backgrounds instead of expensive blur effects to ensure 0% impact on your game/app FPS.
+- **🖱️ Draggable UI:** Move the HUD anywhere. It remembers its position and never blocks your interaction with the underlying UI.
+- **📉 Smart FPS Monitor:** Built-in FPS counter that changes color (Green/Orange/Red) based on performance.
+- **📋 Copy on Long Press:** Long press any data row to copy the value to your clipboard. Perfect for capturing IDs, tokens, or coordinates.
+- **🎨 Auto-Formatting:** Automatically detects types and applies colors (Green for Booleans, Cyan for Numbers, Amber for Strings).
+- **🛡️ Zero-Cost Mode:** When `enabled: false`, it returns a `SizedBox.shrink()` and stops all tickers, consuming zero CPU/GPU cycles.
 
 ## 📦 Installation
 
-Add this to your package's `pubspec.yaml` file:
+Add `dev_hud` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dev_hud: ^0.0.3
+  dev_hud: ^0.0.5
 ```
 
 ````
 
-## 💻 Usage
+## 🚀 Quick Start
 
-### 1. Wrap your App
-
-Wrap your `MaterialApp` (or your root widget) with `DevHud`.
+Wrap your `MaterialApp` (or root widget) with `DevHud`:
 
 ```dart
-import 'package:flutter/material.dart';
 import 'package:dev_hud/dev_hud.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return DevHud(
-      // Toggle this with a Remote Config or a global constant
-      enabled: true,
-      // Optional: Hide FPS if you only want custom data
+  runApp(
+    DevHud(
+      enabled: true, // Toggle this based on kDebugMode or remote config
       showFps: true,
-      // Optional: Set initial position
-      initialPosition: const Offset(10, 50),
+      initialPosition: const Offset(20, 60),
       child: MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(title: const Text('My Game')),
-          body: const GameLevel(),
-        ),
+        home: MyGamePage(),
       ),
-    );
-  }
+    ),
+  );
 }
 
 ```
 
-### 2. Log Data Anywhere
+## 📝 Usage
 
-You can update the HUD from anywhere in your code (Controllers, Game Loop, Services) using the singleton `DevHudService`.
-
-**Update a single value:**
+Update the HUD from anywhere in your code (Controllers, Game Loop, Services) using the `DevHudService` singleton.
 
 ```dart
-// Update String
-DevHudService.instance.update("Weapon", "Sword of Truth");
+// Track simple values
+DevHudService.instance.update("Score", 1250);
 
-// Update Integer (great for counting objects)
-DevHudService.instance.update("Enemies", 12);
+// Track boolean states (Auto-colors Green/Red)
+DevHudService.instance.update("GodMode", true);
 
-// Update Boolean (Shows as ON/OFF in Green/Red)
-DevHudService.instance.update("God Mode", true);
+// Track complex strings
+DevHudService.instance.update("API_Status", "200_OK");
 
-```
-
-**Remove a value:**
-
-```dart
-DevHudService.instance.remove("Loading State");
-
-```
-
-**Clear all data:**
-
-```dart
+// Clear all data
 DevHudService.instance.clear();
 
 ```
 
-## 🛠 Configuration
+## 🛠 Advanced: Performance Testing
 
-| Parameter         | Type     | Default    | Description                                                 |
-| ----------------- | -------- | ---------- | ----------------------------------------------------------- |
-| `child`           | `Widget` | required   | The widget below this overlay (usually MaterialApp).        |
-| `enabled`         | `bool`   | `true`     | If false, the overlay disappears and consumes no resources. |
-| `showFps`         | `bool`   | `true`     | Show/Hide the built-in FPS counter.                         |
-| `initialPosition` | `Offset` | `(10, 50)` | Starting position of the overlay button.                    |
+You can use `DevHud` to visualize how your app handles heavy loads. Check the `example` folder for a "Lag Simulation" demo that intentionally blocks the UI thread to see the FPS counter in action.
+
+## 📸 Screenshots
+
+| Feature        | Description                                              |
+| -------------- | -------------------------------------------------------- |
+| **Draggable**  | Drag the "Terminal" icon to reposition the HUD.          |
+| **Data Types** | Auto-coloring for `bool`, `int`, `double`, and `String`. |
+| **Clipboard**  | Long-press any row to copy data to clipboard.            |
+
+---
 
 ## 🛡️ License
 
 This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+
+```
 ````
