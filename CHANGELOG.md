@@ -1,3 +1,14 @@
+## 0.0.8
+
+- **Fixed Screenshot Display**: Updated README.md image URL from `blob` to `raw` for proper rendering on pub.dev and GitHub.
+
+## 0.0.7
+
+- **Enhanced Documentation**: Completely redesigned README.md with modern formatting, improved readability, and comprehensive examples.
+- **Better Developer Experience**: Added structured sections including Quick Start, Usage Examples, Best Practices, and Troubleshooting guide.
+- **Visual Improvements**: Added badges, tables, collapsible sections, and emoji indicators for better navigation.
+- **Extended Examples**: Included real-world use cases for game development, API monitoring, and performance testing scenarios.
+
 ## 0.0.6
 
 - **Fixed Clipboard Notification**: Resolved issue where SnackBar message text was invisible after copying data.
