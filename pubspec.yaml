@@ -1,6 +1,6 @@
 name: dev_hud
 description: A lightweight, draggable, game-focused debug overlay for Flutter.
-version: 0.0.8
+version: 0.0.9
 
 homepage: https://github.com/hhdblog/dev_hud
 
@@ -13,6 +13,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_test:

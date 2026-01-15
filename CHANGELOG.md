@@ -1,3 +1,25 @@
+## 0.0.9
+
+### 🚀 New Features
+- **Memory Usage Tracking**: Added `showMemory` parameter to display real-time RSS memory usage.
+- **Collapsible Groups**: Use `/` in keys (e.g., `"Player/Health"`) to create collapsible groups.
+- **Position Persistence**: Added `persistPosition` parameter to remember HUD position across app restarts.
+
+### ⚡ Optimizations  
+- **FPS Calculation**: Optimized Ticker-based FPS calculation with throttled updates (every 500ms).
+- **Equality Check**: `update()` now skips `notifyListeners()` if the value hasn't changed.
+
+### 🎨 UI Improvements
+- **Drag Feedback**: Animated cyan glow border and shadow when dragging.
+- **Rounded Splash Effects**: InkWell ripple effects now have rounded corners.
+- **Invisible Grab Handle**: Added transparent touch area below collapsed HUD for easier dragging near status bar.
+- **Safe Area Boundaries**: HUD respects bottom navigation bar/gesture area.
+
+### 🐛 Bug Fixes
+- **Status Bar Overlap**: HUD can now be dragged over the status bar in fullscreen apps.
+- **MessengerKey Warning**: Copy-to-clipboard now prints a debug message instead of silently failing when `scaffoldMessengerKey` is not set.
+- **ListenableBuilder**: Replaced deprecated `AnimatedBuilder` with `ListenableBuilder` for better semantics.
+
 ## 0.0.8
 
 - **Fixed Screenshot Display**: Updated README.md image URL from `blob` to `raw` for proper rendering on pub.dev and GitHub.

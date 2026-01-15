@@ -9,7 +9,9 @@ Monitor FPS, track custom data, and debug in real-time — all without compromis
 [![pub package](https://img.shields.io/pub/v/dev_hud.svg)](https://pub.dev/packages/dev_hud)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-![DevHud Demo](https://raw.githubusercontent.com/hhdblog/dev_hud/main/screenshots/demo.png)
+![DevHud Demo](https://raw.githubusercontent.com/hhdblog/dev_hud/main/screenshots/demo.gif)
+
+📹 [Watch demo video](https://raw.githubusercontent.com/hhdblog/dev_hud/main/screenshots/demo.mp4) • 🖼️ [Static screenshot](https://raw.githubusercontent.com/hhdblog/dev_hud/main/screenshots/demo.png)
 
 [Features](#-features) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Usage](#-usage) • [Examples](#-examples)
 
@@ -63,7 +65,7 @@ Add `dev_hud` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dev_hud: ^0.0.8
+  dev_hud: ^0.0.9
 ```
 
 Then run:
@@ -161,9 +163,28 @@ void onGameTick() {
 DevHud(
   enabled: true,                    // Toggle visibility
   showFps: true,                    // Show FPS counter
+  showMemory: false,                // Show memory usage (NEW)
+  persistPosition: false,           // Remember position across restarts (NEW)
   initialPosition: Offset(20, 60),  // Starting position
   child: YourApp(),
 )
+```
+
+### Collapsible Groups (NEW)
+
+Use `/` in keys to automatically create collapsible sections:
+
+```dart
+// These will be grouped under "Player"
+DevHudService.instance.update("Player/Health", 100);
+DevHudService.instance.update("Player/Score", 500);
+DevHudService.instance.update("Player/Level", 5);
+
+// These will be grouped under "World"
+DevHudService.instance.update("World/Zone", "Forest");
+DevHudService.instance.update("World/Enemies", 12);
+
+// Tap group headers to collapse/expand!
 ```
 
 ---

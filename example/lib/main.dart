@@ -26,11 +26,15 @@ class _DevHudExampleAppState extends State<DevHudExampleApp> {
       enabled: _isHudEnabled,
       // 2. Enable the built-in FPS monitor
       showFps: true,
-      // 3. Set initial position (e.g., Top-Left)
+      // 3. Enable memory usage monitor (NEW)
+      showMemory: true,
+      // 4. Persist HUD position across restarts (NEW)
+      persistPosition: true,
+      // 5. Set initial position (e.g., Top-Left)
       initialPosition: const Offset(20, 60),
-      // 4. Wrap your main app
+      // 6. Wrap your main app
       child: MaterialApp(
-        // 5. Set the scaffoldMessengerKey for the clipboard feature
+        // 7. Set the scaffoldMessengerKey for the clipboard feature
         scaffoldMessengerKey: DevHudService.messengerKey,
         debugShowCheckedModeBanner: false,
         title: 'DevHud Demo',
@@ -79,8 +83,14 @@ class _GameSimulationScreenState extends State<GameSimulationScreen> {
     super.initState();
     // Initialize HUD with some default game data
     DevHudService.instance.update("GameState", "Running");
-    DevHudService.instance.update("Player", "Hero_01");
-    DevHudService.instance.update("Energy", _energy);
+
+    // NEW: Using groups with "/" separator
+    DevHudService.instance.update("Player/Name", "Hero_01");
+    DevHudService.instance.update("Player/Energy", _energy);
+    DevHudService.instance.update("Player/Level", 5);
+
+    DevHudService.instance.update("World/Zone", "Forest");
+    DevHudService.instance.update("World/Enemies", 12);
   }
 
   @override
@@ -96,7 +106,7 @@ class _GameSimulationScreenState extends State<GameSimulationScreen> {
       _score += 100;
     });
     // Update HUD: Int values are colored Cyan
-    DevHudService.instance.update("Score", _score);
+    DevHudService.instance.update("Player/Score", _score);
   }
 
   void _takeDamage() {
@@ -104,7 +114,7 @@ class _GameSimulationScreenState extends State<GameSimulationScreen> {
       _energy = (_energy - 10).clamp(0, 100);
     });
     // Update HUD: You can update existing keys instantly
-    DevHudService.instance.update("Energy", _energy);
+    DevHudService.instance.update("Player/Energy", _energy);
 
     if (_energy == 0) {
       DevHudService.instance.update("GameState", "GAME OVER");
@@ -304,7 +314,9 @@ class _GameSimulationScreenState extends State<GameSimulationScreen> {
           ),
           const SizedBox(height: 8),
           const Text(
-            "Drag the HUD around. Long press data to copy.",
+            "Drag the HUD anywhere (even over status bar!).\n"
+            "Long press data to copy. Tap groups to collapse.",
+            textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white38, fontSize: 12),
           ),
         ],
